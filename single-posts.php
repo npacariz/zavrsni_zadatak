@@ -31,6 +31,30 @@ $id = $_GET['id'];
     <hr>
     <?php } ?>
 </div><!-- /.blog-post -->
+<?php 
+     $sql = "SELECT * FROM comments WHERE Post_id='$id'";
+   $comments = connection($sql, $conn);
+
+    foreach($comments as $comment){
+
+    
+    ?>
+    <ul>
+
+        <li>
+            
+        <p class="blog-post-meta"><a href="#"><?php echo $comment['Author']?></a></p>
+
+        <p><?php echo $comment['Text']; ?></p>
+        </li>
+
+    </ul>
+ 
+    
+    <hr>
+    <?php } ?>
+
+
 
 
             </div><!-- /.blog-main -->

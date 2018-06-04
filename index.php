@@ -46,5 +46,5 @@ include "includes/db.php";
 
 include "includes/sidebar.php";
 
-include "includesfooter.php";
+include "includes/footer.php";
 ?>
