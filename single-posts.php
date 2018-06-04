@@ -5,7 +5,7 @@ include "includes/header.php";
 ?>
 
 
-        <div class="blog-post">
+    <div class="blog-post">
                 <a href = single-posts.php>
                      <h2 class="blog-post-title">Sample blog post</h2>
                 </a>
@@ -40,7 +40,7 @@ include "includes/header.php";
                 <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
             </div><!-- /.blog-post -->
 
-
+            </div><!-- /.blog-main -->
 
 
 <?php

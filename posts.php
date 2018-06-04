@@ -8,7 +8,7 @@ include "includes/header.php";
 
 
 
-  </div><!-- /.blog-main -->
+
 
 <?php
 

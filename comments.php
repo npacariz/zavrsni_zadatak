@@ -1,6 +1,6 @@
 <?php
 
-include "partains/header.php";
+include "includes/header.php";
 
 ?>
 
@@ -12,7 +12,7 @@ include "partains/header.php";
 
 <?php
 
-include "partains/sidebar.php";
+include "includes/sidebar.php";
 
-include "partains/footer.php";
+include "includes/footer.php";
 ?>

@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="styles/blog.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -43,4 +44,4 @@
 <main role="main" class="container">
 
     <div class="row">
-     <div class="col-sm-8 blog-main">
+    <div class="col-sm-8 blog-main">
