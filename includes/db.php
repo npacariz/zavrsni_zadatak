@@ -17,7 +17,7 @@ catch(PDOException $e)
     }
 
 
-function connection($sql, $conn){
+function query($sql, $conn){
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
