@@ -1,9 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-include "includes/header.php";
 include "includes/db.php";
+include_once "includes/header.php";
+
 ?>
 
 <div class="col-sm-8 blog-main">
@@ -17,7 +17,7 @@ include "includes/db.php";
             foreach($posts as $post){
         ?>
         <h2 class="blog-post-title">
-            <a href =single-posts.php?id=<?php echo $post['id'];?>>
+            <a href ='single-posts.php?id=<?php echo $post['id'];?>'>
             <?php echo $post['Title'];?>
             </a>
         </h2>

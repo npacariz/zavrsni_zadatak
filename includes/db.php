@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "Vivify";
+$password = "";
 $dbname = "blog";
 
 try {
@@ -23,5 +23,14 @@ function query($sql, $conn){
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     return $stmt->fetchAll();
 }
+
+
+function insertOrDelete($sql, $conn){
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+
+
 
 ?>

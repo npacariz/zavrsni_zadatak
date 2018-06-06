@@ -28,4 +28,28 @@ h2 a:hover{
     text-decoration: underline;
     text-decoration-color:  #b34848;
 }
+.submit_comment_form {
+    margin-bottom: 50px;
+}
+
+ .submit_comment_form form{
+    
+    display: flex;
+    flex-flow: column;
+    
+}
+
+.input-small {
+    width:  45%;
+}
+
+input {
+    display: block; 
+    width: 100%;
+}
+
+.buttons-for-comment{
+    display: flex;
+    justify-content: space-between;
+}
 

@@ -2,8 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include "includes/header.php";
-include "includes/db.php";
+include_once "includes/header.php";
+include_once "includes/db.php";
 
 ?>
 <div class="col-sm-8 blog-main">
@@ -17,7 +17,7 @@ include "includes/db.php";
 
             $id = $_GET['id'];
             //function for querying one post with specific id and comments related to that post
-            $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text
+            $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.id, c.Author as comment_author, c.Text
             FROM posts as p LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = '$id'";
             $join = query($sql, $conn);
 
@@ -26,10 +26,10 @@ include "includes/db.php";
             $count = count($join);
 
           foreach($join as $comm){
-            $single = array('comment_author' => $comm['comment_author'], 'Text' => $comm['Text'],);
+            $single = array('id' => $comm['id'],'comment_author' => $comm['comment_author'], 'Text' => $comm['Text'],);
             $comments[] = $single;
           }
-         
+      
             ?>
 
             <h2 class="blog-post-title">
@@ -50,11 +50,45 @@ include "includes/db.php";
 
     </div><!-- /.blog-post -->
 
+
+     <!-- Submit comment form -->
+    <div class='submit_comment_form'>
+
+        <form action="includes/create-comment.php" method="POST">
+
+                <div class="input-small">
+                     <input type="text" placeholder ="Name" name="Author"><br>
+              </div>
+                   
+                    <textarea name="body" placeholder ="Enter comment" rows = "5"></textarea><br>
+                    <input type="hidden" name="Post_id" value=<?php echo $id ?> > 
+
+                <?php
+
+                    if(isset($_GET['error']) && $_GET['error'] ==='empty'){
+                    echo "<p class = 'alert alert-danger'> All fileds must be filed in </p>";
+                    }else if(isset($_GET['comment']) && $_GET['comment'] ==='inserted'){
+                        echo "<p class = 'alert alert-success'> Thanks for the comment! </p>";
+                    }
+
+                ?>
+
+
+               <div class="buttons-for-comment">
+                    <button type="reset" class="btn btn-warning">Reset</button>
+                    <button type="submit"  name='submit' class="btn btn-success">Submit</button>
+             </div>
+        </form>
+
+     </div>     
+
+
+
          <?php
-        //if ther is comments, display comments and show hide/show button 
+        //if there is comments, display comments and show hide/show button 
         if($comments[0]["Text"]){
 
-            echo '<button type="button" id="show_hide_buttton" class="btn-md">Hide comments</button>
+            echo '<button type="button" id="show_hide_buttton" class="btn btn-default" style ="margin-bottom:20px">Hide comments</button>
             
                 <div id="comment_div">';
                 
@@ -67,11 +101,23 @@ include "includes/db.php";
                             <p class="blog-post-meta">'
                                 .$comment["comment_author"].
                             '</p>
-                            <p>'
-                            .$comment["Text"]. '
-                            </p>
-                            </li>
-                        </ul>
+
+                            <div class = "delete-comment-style">
+                                <p>'
+                                .$comment["Text"]. '
+                                    
+                                </p>
+                                <form action="includes/delete-comments.php" method = "POST">
+                                    <input type="hidden" name="post_id" value ='.$id.'> 
+                                    <input type="hidden" name="id" value ='.$comment['id'].'> 
+
+                                    <button type="submit"  name="delete" class="btn-sm btn-danger">Delete a comment</button>
+                                        
+                                </form>
+                            </div>
+                        </li>
+                           
+                    </ul>
 
                     <hr>';
             }    
@@ -91,10 +137,13 @@ include "includes/db.php";
         ?>
 
 </div><!-- /.blog-main -->
-<script src="main.js">
 
-</script>
+
+
 <?php
 include "includes/sidebar.php";
 include "includes/footer.php";
 ?>
+<script src="main.js"></script>
+
+
