@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 
 include "includes/header.php";
 include "includes/db.php";
+
 ?>
 <div class="col-sm-8 blog-main">
 
@@ -17,7 +18,7 @@ include "includes/db.php";
             $id = $_GET['id'];
             //function for querying one post with specific id and comments related to that post
             $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text 
-            FROM posts as p INNER JOIN comments as c ON p.id = c.Post_id WHERE c.Post_id = '$id'";
+            FROM posts as p LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = '$id'";
             $postWithComments = query($sql, $conn);
 
             $post = $postWithComments[0];
@@ -28,7 +29,7 @@ include "includes/db.php";
                 $comments[$i]["comment_author"] = $postWithComments[$i]["comment_author"];
                 $comments[$i]['Text'] = $postWithComments[$i]['Text'];
             }
-    
+          
             ?>
 
             <h2 class="blog-post-title">
@@ -48,15 +49,16 @@ include "includes/db.php";
     
 
     </div><!-- /.blog-post -->
-
+    <button type='button' id="show_hide_buttton" class="btn-md">Hide comments</button>
     <!-- comments connected to single posts from above -->
+    <div id="comment_div">
         <?php 
     
        
         foreach($comments as $comment){
-  
+        
         ?>
-
+        
         <ul>
             <li>
                 <p class="blog-post-meta">
@@ -69,9 +71,15 @@ include "includes/db.php";
         </ul>
         
         <hr>
-
+        
+       
         <?php 
             } 
+        ?>
+
+        </div>
+
+    <?php
     }else{
         // if id is not set in url echo this
         echo "Post id is not passed by url";
@@ -80,7 +88,9 @@ include "includes/db.php";
         ?>
 
 </div><!-- /.blog-main -->
-
+<script src="main.js">
+    
+</script>
 <?php
 include "includes/sidebar.php";
 include "includes/footer.php";
