@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include "includes/header.php";
 include "includes/db.php";
@@ -26,7 +28,7 @@ include "includes/db.php";
 
       
         <p>
-        <?php echo $post['Body']; ?>
+          <?php echo $post['Body']; ?>
         </p>
             
             <hr>
