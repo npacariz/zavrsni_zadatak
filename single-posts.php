@@ -11,25 +11,25 @@ include "includes/db.php";
 
 <!-- Single post from database -->
     <div class="blog-post">
-    <?php 
+    <?php
     //checking  if id is set in url
     if(isset($_GET['id'])){
-           
+
             $id = $_GET['id'];
             //function for querying one post with specific id and comments related to that post
-            $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text 
+            $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text
             FROM posts as p LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = '$id'";
-            $postWithComments = query($sql, $conn);
+            $join = query($sql, $conn);
 
-            $post = $postWithComments[0];
+            $post = $join[0];
             $comments = [];
-            $count = count($postWithComments);
-           
-            for($i=0; $i < $count;  $i++){
-                $comments[$i]["comment_author"] = $postWithComments[$i]["comment_author"];
-                $comments[$i]['Text'] = $postWithComments[$i]['Text'];
-            }
-          
+            $count = count($join);
+
+          foreach($join as $comm){
+            $single = array('comment_author' => $comm['comment_author'], 'Text' => $comm['Text'],);
+            $comments[] = $single;
+          }
+         
             ?>
 
             <h2 class="blog-post-title">
@@ -46,50 +46,53 @@ include "includes/db.php";
             </p>
 
             <hr>
-    
+
 
     </div><!-- /.blog-post -->
-    <button type='button' id="show_hide_buttton" class="btn-md">Hide comments</button>
-    <!-- comments connected to single posts from above -->
-    <div id="comment_div">
-        <?php 
-    
-       
-        foreach($comments as $comment){
-        
-        ?>
-        
-        <ul>
-            <li>
-                <p class="blog-post-meta">
-                    <a href="#"><?php echo $comment['comment_author']?></a>
-                </p>
-                <p>
-                    <?php echo $comment['Text']; ?>
-                </p>
-            </li>
-        </ul>
-        
-        <hr>
-        
-       
-        <?php 
-            } 
-        ?>
 
-        </div>
+         <?php
+        //if ther is comments, display comments and show hide/show button 
+        if($comments[0]["Text"]){
 
-    <?php
-    }else{
+            echo '<button type="button" id="show_hide_buttton" class="btn-md">Hide comments</button>
+            
+                <div id="comment_div">';
+                
+
+
+            foreach($comments as $comment){
+
+                echo'<ul>
+                        <li>
+                            <p class="blog-post-meta">'
+                                .$comment["comment_author"].
+                            '</p>
+                            <p>'
+                            .$comment["Text"]. '
+                            </p>
+                            </li>
+                        </ul>
+
+                    <hr>';
+            }    
+            echo "</div>";
+
+        }
+        else{
+            // if there is no comments display this text
+            echo "<p>No comments, be first to leave comment</p>";
+        }          
+    }
+    else{
         // if id is not set in url echo this
         echo "Post id is not passed by url";
     }
-        
+
         ?>
 
 </div><!-- /.blog-main -->
 <script src="main.js">
-    
+
 </script>
 <?php
 include "includes/sidebar.php";

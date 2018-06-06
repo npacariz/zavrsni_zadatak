@@ -2,14 +2,14 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "vivify";
+$password = "Vivify";
 $dbname = "blog";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     }
 catch(PDOException $e)
     {
@@ -20,7 +20,7 @@ catch(PDOException $e)
 function query($sql, $conn){
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     return $stmt->fetchAll();
 }
 

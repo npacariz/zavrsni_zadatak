@@ -27,5 +27,5 @@ $posts = query($sql, $conn);
           
         </aside><!-- /.blog-sidebar -->
       
-    </div><!-- /.row -->
+ 
 
