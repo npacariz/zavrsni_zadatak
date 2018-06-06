@@ -17,7 +17,7 @@ $posts = query($sql, $conn);
                     ?>
 
                 <p>
-                    <a href="../single-posts.php?id="<?php echo $post['id']?>>
+                <a href =single-posts.php?id=<?php echo $post['id'];?>>
                     <?php echo $post['Title'] ?></a>
                 </p>
                 <?php
