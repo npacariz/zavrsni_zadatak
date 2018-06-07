@@ -41,6 +41,7 @@ h2 a:hover{
 
 .input-small {
     width:  45%;
+    margin-bottom: 5px;
 }
 
 input {
@@ -54,3 +55,9 @@ input {
     justify-content: space-between;
 }
 
+.posts-form form{
+    
+    display: flex;
+    flex-flow: column;
+    
+}

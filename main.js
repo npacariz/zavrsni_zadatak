@@ -18,8 +18,8 @@ button.onclick = function(){
 
 
 function validate() {
-    var name = document.getElementById("formName");
-    var body = document.getElementById("formBody");
+    let name = document.getElementById("formName");
+    let body = document.getElementById("formBody");
    
     if(name.value == '' || body.value == ''){
         document.getElementById("alert_tag").style.display = 'block';
@@ -28,3 +28,23 @@ function validate() {
    
  
 } 
+
+
+function postValidate() {
+    let title = document.getElementById("titlePosts");
+    let author = document.getElementById("authorPostss");
+    let body = document.getElementById("bodyPosts");
+
+    
+    if(title.value == ''){
+        title.style.backgroundColor = "red";
+        return false;
+    }else  if(author.value == ''){
+        author.style.backgroundColor = "red";
+        return  false;
+    }else if(body.value == ''){
+        body.style.backgroundColor = "red";
+        return false;
+    }  
+       
+}

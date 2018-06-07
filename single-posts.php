@@ -60,10 +60,10 @@ include_once "includes/db.php";
                      <input type="text" placeholder ="Name" name="Author" id="formName"><br>
               </div>
                    
-                    <textarea name="body" placeholder ="Enter comment" rows = "5" id='formBody'></textarea><br>
+                    <textarea name="body" placeholder ="Enter comment" rows = "10" id='formBody'></textarea><br>
                     <input type="hidden" name="Post_id" value=<?php echo $id ?> > 
 
-                    <p id="alert_tag" class = 'alert alert-danger' style="display:none" > All fileds must be filed in </p>
+                     <p id="alert_tag" class = 'alert alert-danger' style="display:none" > All fileds must be filed in </p>
 
                <div class="buttons-for-comment">
                     <button type="reset" class="btn btn-warning">Reset</button>
