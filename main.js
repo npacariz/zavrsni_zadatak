@@ -30,6 +30,22 @@ function validate() {
 } 
 
 
+
+
+function check(){
+
+    let temp  = confirm('Do you really want to delete this post?');
+
+    if(temp){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+
+/*
 function postValidate() {
     let title = document.getElementById("titlePosts");
     let author = document.getElementById("authorPostss");
@@ -48,3 +64,4 @@ function postValidate() {
     }  
        
 }
+*/

@@ -45,6 +45,12 @@ include_once "includes/db.php";
                 <?php echo $post['Body'];?>
             </p>
 
+            <form action="includes/delete-posts.php" method="POST" onsubmit = "return check()">
+                    <input type="hidden" name="delete_id" value=<?php echo $id ?> >
+                    <button   class="btn btn-danger" name="deletePost"> Delete post </button>
+             </form>
+           
+           
             <hr>
 
 
