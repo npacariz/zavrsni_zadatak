@@ -54,25 +54,16 @@ include_once "includes/db.php";
      <!-- Submit comment form -->
     <div class='submit_comment_form'>
 
-        <form action="includes/create-comment.php" method="POST">
+        <form  name='myForm' action="includes/create-comment.php" method="POST" onsubmit=" return validate()" >
 
                 <div class="input-small">
-                     <input type="text" placeholder ="Name" name="Author"><br>
+                     <input type="text" placeholder ="Name" name="Author" id="formName"><br>
               </div>
                    
-                    <textarea name="body" placeholder ="Enter comment" rows = "5"></textarea><br>
+                    <textarea name="body" placeholder ="Enter comment" rows = "5" id='formBody'></textarea><br>
                     <input type="hidden" name="Post_id" value=<?php echo $id ?> > 
 
-                <?php
-
-                    if(isset($_GET['error']) && $_GET['error'] ==='empty'){
-                    echo "<p class = 'alert alert-danger'> All fileds must be filed in </p>";
-                    }else if(isset($_GET['comment']) && $_GET['comment'] ==='inserted'){
-                        echo "<p class = 'alert alert-success'> Thanks for the comment! </p>";
-                    }
-
-                ?>
-
+                    <p id="alert_tag" class = 'alert alert-danger' style="display:none" > All fileds must be filed in </p>
 
                <div class="buttons-for-comment">
                     <button type="reset" class="btn btn-warning">Reset</button>
@@ -144,6 +135,6 @@ include_once "includes/db.php";
 include "includes/sidebar.php";
 include "includes/footer.php";
 ?>
-<script src="main.js"></script>
 
+<script src="main.js"></script>
 

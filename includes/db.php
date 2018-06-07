@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "vivify";
 $dbname = "blog";
 
 try {

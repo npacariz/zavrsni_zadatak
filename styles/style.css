@@ -49,6 +49,7 @@ input {
 }
 
 .buttons-for-comment{
+    margin-top:10px;
     display: flex;
     justify-content: space-between;
 }

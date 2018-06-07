@@ -14,3 +14,17 @@ button.onclick = function(){
     }
 }
     
+
+
+
+function validate() {
+    var name = document.getElementById("formName");
+    var body = document.getElementById("formBody");
+   
+    if(name.value == '' || body.value == ''){
+        document.getElementById("alert_tag").style.display = 'block';
+        return false
+    }
+   
+ 
+} 
