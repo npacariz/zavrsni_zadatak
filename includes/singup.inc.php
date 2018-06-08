@@ -14,13 +14,12 @@ else{
 
 
         if(empty($first) || empty($last) || empty($username) || empty($email) || empty($password)){
-             header("Location:singup.php?error");
-    }
-    else{
+             header("Location:../singup.php?error");
+    }else{
         //check if username  is taken
         $sql = "SELECT username, email FROM users";
         $array = query( $sql,$conn);
-        $user = false;
+  
         foreach($array as $item ){
             if($item['username'] === $username){
                 header("Location: ../signup.php?error=taken");
@@ -34,11 +33,11 @@ else{
                 //insert into username
             $insql = "INSERT INTO users(username, email, firstName, lastName, password) VALUES ('$username','$email','$first','$last','$password')";
             insertOrDelete($insql, $conn);
-            header("Location:index.php?singup=success");
+            header("Location:../index.php?success");
 
         }
       
 
                     
                     
-                }
+    }

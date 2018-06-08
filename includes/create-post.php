@@ -15,7 +15,7 @@ if(!isset($_POST['submit'])){
         header("Location: ../create.php?error=empty"); 
        
     }else{
-        $sql = "INSERT INTO posts (Title,Body,Author) VALUES ('$title', '$body', '$author')";
+        $sql = "INSERT INTO posts (Title,Body,user_id) VALUES ('$title', '$body', '$author')";
         insertOrDelete($sql,$conn);
            
         header("Location: ../index.php"); 

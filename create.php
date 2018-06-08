@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 include "includes/db.php";
 include_once "includes/header.php";
 
+if(!isset($_SESSION['id'])){
+    header("Location:index.php?login=error");
+}
 ?>
 
 <div class="col-sm-8 blog-main">
@@ -16,7 +19,7 @@ include_once "includes/header.php";
         <input type="text" name="Title" placeholder="Naslov" id="titlePosts"></input><br>
         <p id="posts_title_alert" class = 'alert alert-danger' style="display:none" > Title is required </p>
 
-        <input type="text" name= "Autor" placeholder ="Autor" id="authorPosts"></input><br>
+        <input type="hidden" name= "Autor" placeholder ="Autor" value=<?php echo $_SESSION['id'];?> id="authorPosts"></input><br>
         <p id="author_post_alert" class = 'alert alert-danger' style="display:none" > Author name is required </p>
 
     </div>

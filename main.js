@@ -138,3 +138,25 @@ function singUpvalidation() {
 
    
 }
+
+
+function loginValidation() {
+    let username = document.getElementById("loginUsername");
+    let password = document.getElementById("loginPassword");
+
+
+    if(password.value == ''){
+        document.getElementById("login_username_alert").style.display="block"
+        return false;
+    }else{
+        document.getElementById("login_username_alert").style.display="none"
+    }
+
+    if(username.value == ''){
+        document.getElementById("login_password_alert").style.display="block"
+        return false;
+    }else{
+        document.getElementById("login_password_alert").style.display="none"
+    }
+
+}

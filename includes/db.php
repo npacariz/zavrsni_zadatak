@@ -2,8 +2,8 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "blog";
+$password = "vivify";
+$dbname = "blog_dodatni";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

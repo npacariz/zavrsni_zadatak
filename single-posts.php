@@ -17,8 +17,9 @@ include_once "includes/db.php";
 
             $id = $_GET['id'];
             //function for querying one post with specific id and comments related to that post
-            $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.id, c.Author as comment_author, c.Text
-            FROM posts as p LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = '$id'";
+            $sql = " SELECT p.Title,p.Body, u.firstName, u.id  as usersId, u.lastName, p.Create_at, c.id , c.Author, c.Text 
+             FROM posts as p INNER JOIN users as u ON u.id = p.user_id 
+             LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = '$id'";
             $join = query($sql, $conn);
 
             $post = $join[0];
@@ -26,7 +27,7 @@ include_once "includes/db.php";
             $count = count($join);
 
           foreach($join as $comm){
-            $single = array('id' => $comm['id'],'comment_author' => $comm['comment_author'], 'Text' => $comm['Text'],);
+            $single = array('id' => $comm['id'],'comment_author' => $comm['Author'], 'Text' => $comm['Text'],);
             $comments[] = $single;
           }
       
@@ -38,18 +39,21 @@ include_once "includes/db.php";
 
 
             <p class="blog-post-meta">
-                <?php echo $post['Created_at']; ?> by <a href="#"><?php echo $post['Author']?></a>
+                <?php echo $post['Create_at']; ?> by <a href="#"><?php echo $post['firstName']." ".$post['lastName']?></a>
             </p>
 
             <p>
                 <?php echo $post['Body'];?>
             </p>
-
-            <form action="includes/delete-posts.php" method="POST" onsubmit = "return check()">
-                    <input type="hidden" name="delete_id" value=<?php echo $id ?> >
-                    <button   class="btn btn-danger" name="deletePost"> Delete post </button>
-             </form>
-           
+            <?php 
+            if(isset($_SESSION['id']) && $_SESSION['id'] ===  $join[0]['usersId']){
+                echo  ' <form action="includes/delete-posts.php" method="POST" onsubmit = "return check()">
+                      <input type="hidden" name="delete_id" value=<?php echo $id ?> 
+                          <button   class="btn btn-danger" name="deletePost"> Delete post </button>
+                      </form> ';
+       
+            }
+           ?>
            
             <hr>
 
@@ -106,10 +110,11 @@ include_once "includes/db.php";
                                 </p>
                                 <form action="includes/delete-comments.php" method = "POST">
                                     <input type="hidden" name="post_id" value ='.$id.'> 
-                                    <input type="hidden" name="id" value ='.$comment['id'].'> 
-
-                                    <button type="submit"  name="delete" class="btn-sm btn-danger">Delete a comment</button>
-                                        
+                                    <input type="hidden" name="id" value ='.$comment['id'].'> ';
+                                    if(isset($_SESSION['id']) && $_SESSION['id'] === $join[0]['usersId']){
+                                   echo '<button type="submit"  name="delete" class="btn-sm btn-danger">Delete a comment</button>';
+                                    };
+                                     echo '   
                                 </form>
                             </div>
                         </li>

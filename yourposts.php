@@ -10,7 +10,8 @@ include_once "includes/header.php";
     <div class="blog-post">
 
         <?php 
-            $sql = "SELECT p.id, p.Title, p.Create_at, p.Body, u.firstName, u.lastName FROM posts as p INNER JOIN users as u ON u.id = p.user_id ORDER BY p.Create_at DESC ";
+        $pri =$_SESSION['id'];
+            $sql = "SELECT p.id, p.Title, p.Create_at, p.Body, u.firstName, u.lastName FROM posts as p INNER JOIN users as u ON u.id = p.user_id WHERE p.user_id  ={$pri }";
             //function from includes/db.php for quering database
             $posts = query($sql, $conn);
 

@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,12 +29,31 @@
             <nav class="nav">
             <div class ='navButtons'>
                 <a class="nav-link " href="./index.php">Home</a>
+                <?php
+                if(isset($_SESSION['id'])){
+                echo '
                 <a class="nav-link " href="./create.php">Create</a>
-            </div>   
-            <div class ='loginButtons'>   
-                <a class="nav-link " href="./login.php">Login</a>
-                <a class="nav-link " href="./signup.php">Signup</a>
-            </div>
+                <a class="nav-link " href="./yourposts.php">Your Posts</a>  
+                ';
+                }
+                ?>
+            </div> 
+            <?php
+       
+            if(isset($_SESSION['id'])){
+                echo "
+                <div class ='loginButtons'>   
+                <a class='nav-link' href='includes/logout.php'>Logout</a>
+                </div>
+                ";
+            }else{
+                echo " <div class ='loginButtons'>   
+                <a class='nav-link ' href='./login.php'>Login</a>
+                <a class='nav-link ' href='./signup.php'>Signup</a>
+            </div>";
+            }
+            ?>
+           
             </nav>
         </div>
     </div>
