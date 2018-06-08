@@ -61,3 +61,19 @@ input {
     flex-flow: column;
     
 }
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+}
+.loginButtons{
+    display: flex;
+}
+
+.navButtons{
+    display: flex;
+}
+
+.signup-forma{
+    width: 70%;
+}

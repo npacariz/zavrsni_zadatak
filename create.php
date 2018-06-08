@@ -14,12 +14,17 @@ include_once "includes/header.php";
     <form action = "includes/create-post.php" method = "POST" id="postsForma" onsubmit="return postValidate()" >
     <div class="input-small">
         <input type="text" name="Title" placeholder="Naslov" id="titlePosts"></input><br>
-        <input type="text" name= "Autor" placeholder ="Autor" id="authorPosts"></input>
+        <p id="posts_title_alert" class = 'alert alert-danger' style="display:none" > Title is required </p>
+
+        <input type="text" name= "Autor" placeholder ="Autor" id="authorPosts"></input><br>
+        <p id="author_post_alert" class = 'alert alert-danger' style="display:none" > Author name is required </p>
+
     </div>
         
-        <textarea name="body" placeholder ="Enter Post" rows = "10" id="bodyPosts"></textarea>
+        <textarea name="body" placeholder ="Enter Post" rows = "10" id="bodyPosts"></textarea><br>
+        <p id="body_post_alert" class = 'alert alert-danger' style="display:none" >Body of posts is required  </p>
 
-        <div class="buttons-for-comment">
+            <div class="buttons-for-comment">
                <button type="submit" name="submit">Submit</button>
         </div>
     </form>

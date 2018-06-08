@@ -64,17 +64,17 @@ include_once "includes/db.php";
 
                 <div class="input-small">
                      <input type="text" placeholder ="Name" name="Author" id="formName"><br>
-              </div>
+                </div>
                    
                     <textarea name="body" placeholder ="Enter comment" rows = "10" id='formBody'></textarea><br>
                     <input type="hidden" name="Post_id" value=<?php echo $id ?> > 
+                    
+                    <p id="alert_tag" class = 'alert alert-danger' style="display:none" > All fileds must be filed in </p>
 
-                     <p id="alert_tag" class = 'alert alert-danger' style="display:none" > All fileds must be filed in </p>
-
-               <div class="buttons-for-comment">
+                <div class="buttons-for-comment">
                     <button type="reset" class="btn btn-warning">Reset</button>
                     <button type="submit"  name='submit' class="btn btn-success">Submit</button>
-             </div>
+                </div>
         </form>
 
      </div>     

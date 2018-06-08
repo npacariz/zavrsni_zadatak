@@ -25,8 +25,14 @@
     <div class="blog-masthead">
         <div class="container">
             <nav class="nav">
+            <div class ='navButtons'>
                 <a class="nav-link " href="./index.php">Home</a>
                 <a class="nav-link " href="./create.php">Create</a>
+            </div>   
+            <div class ='loginButtons'>   
+                <a class="nav-link " href="./login.php">Login</a>
+                <a class="nav-link " href="./signup.php">Signup</a>
+            </div>
             </nav>
         </div>
     </div>

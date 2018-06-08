@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
+include_once "includes/db.php";
 
 $sql ="SELECT id, Title FROM posts ORDER BY Created_at DESC LIMIT 5";
 $posts = query($sql, $conn);
